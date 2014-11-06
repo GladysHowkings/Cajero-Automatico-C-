@@ -1,0 +1,120 @@
+Cajero Automático en DEV C ++
+====================
+
+//Librerias esenciales.
+#include <iostream.h>
+#include <conio.h>
+
+int main(){
+    //Variables.
+    int saldo=100,cant,ext=0,pin;//"ext" es la variable para salir del bucle, "cant" la cantidad que ingresas o retiras.
+    char op,seg;//"op" es la operación a realizar, "seg" es para pedir respuesta al "¿Estás seguro?".
+    //Pedir Pin.
+    while(pin!=7418){
+    cout<<"__________________________________________________________________________\n\n";//Decoración.
+    cout<<"    Intruduzca su c\xA2""digo pin."<<endl;                                      // "\xA2" Código ASCII para mostar "ó".
+    cout<<"__________________________________________________________________________\n\n";
+    cout<<"    N\xA3mero Pin: ";
+    cin>>pin;
+    cout<<"__________________________________________________________________________\n\n";
+    cout<<"    N\xA3mero Pin Correcto."<<endl;
+    cout<<"__________________________________________________________________________\n\n";
+    getch();//Para mostrar antes de cerrar.
+    system("cls");//Para borrar la pantalla.
+    }
+     //Cajero Automatico.
+    while(ext==0){
+    //Para borrar la pantalla y quede mejor.
+    system("cls");
+    //Menú.
+    cout<<"__________________________________________________________________________\n\n";
+    cout<<"    Bienvenido al cajero autom\xA0tico del banco.\n    Despu\x82s de cada operaci\xA2n pulse Enter."<<endl;
+    cout<<"__________________________________________________________________________\n\n";
+    cout<<" 1- Consultar Saldo.\n 2- Ingresar Efectivo.\n 3- Retirar Efectivo.\n 4- Salir.\n";
+    cout<<"__________________________________________________________________________\n\n";
+    cout<<"    Introduzca la operaci\xA2n: ";
+    cin>>op;
+    cout<<"__________________________________________________________________________\n\n";
+    //Comandos.
+    switch (op){
+           //Mostrar Saldo.
+           case '1':
+                 cout<<"    Su saldo actual: "<<saldo<<" EUR."<<endl;
+
+                 break;
+           //Ingreso.
+           case '2':
+                 cout<<"    Cantidad a ingresar: ";
+                 cin>>cant;
+                 cout<<"    \xA8Quiere ingresar "<<cant<<" EUR? (S/N):";
+                 cin>>seg;
+                 //"¿Está seguro?"
+                 switch (seg){
+                        case 's':
+                             cout<<endl<<"    Ha ingresado "<<cant<<" EUR."<<endl;
+                             saldo=saldo+cant;
+                             cout<<"    Su saldo actual: "<<saldo<<" EUR."<<endl;
+                             break;
+                        case 'n':
+                             cout<<"    Ha cancelado su operación."<<endl;
+                             break;
+                        default:
+                             cout<<"    Operaci\xA2n err\xA2nea."<<endl;
+                             break;
+                 }
+                 break;
+           //Retirada. 
+           case '3':
+                 cout<<"    Cantidad a retirar: ";
+                 cin>>cant;
+                 //No puedes sacar más dinero del que no tienes.
+                 if(cant>saldo){
+                 cout<<"    Saldo insuficiente.\n";
+                 }
+                 else{
+                 cout<<"    \xA8Quiere retirar "<<cant<<" EUR? (S/N):";
+                 cin>>seg;
+                 //"¿Está seguro?"
+                 switch (seg){
+                        case 's':
+                             cout<<endl<<"    Ha retirado "<<cant<<" EUR"<<endl;
+                             saldo=saldo-cant;
+                             cout<<"    Su saldo actual: "<<saldo<<" EUR"<<endl;
+                             break;
+                        case 'n':
+                             cout<<"    Ha cancelado su operación."<<endl;
+                             break;
+                        default:
+                             cout<<"    Operaci\xA2n err\xA2nea."<<endl;
+                             break;
+                 }
+                 }
+                 break;
+           //Salir.
+           case '4':
+                 cout<<"    \xA8Quiere salir? (S/N):";
+                 cin>>seg;
+                 switch (seg){
+                        case 's':
+                             cout<<"    Gracias por utilizar nuestro servicio."<<endl;
+                             ext=1;
+                             break;
+                        case 'n':
+                             cout<<"    Ha cancelado su operación."<<endl;
+                             break;
+                        default:
+                             cout<<"    Operaci\xA2n err\xA2nea."<<endl;
+                             break;
+                 
+                 }
+                 break;
+           //En caso de poner cualquier otro carácter.
+           default:
+                   cout<<"    Operaci\xA2n err\xA2nea."<<endl;
+                   break;
+   }
+    cout<<"__________________________________________________________________________\n\n";
+   getch();
+ }
+   
+}
